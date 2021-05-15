@@ -182,7 +182,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@atls/logger@workspace:0.0.0, @atls/logger@workspace:packages/logger":
+"@atls/logger@workspace:0.0.1, @atls/logger@workspace:packages/logger":
   version: 0.0.0-use.local
   resolution: "@atls/logger@workspace:packages/logger"
   dependencies:
@@ -219,7 +219,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@atls/typeorm-logger@workspace:packages/typeorm-logger"
   dependencies:
-    "@atls/logger": "workspace:0.0.0"
+    "@atls/logger": "workspace:0.0.1"
     typeorm: ^0.2.0
   languageName: unknown
   linkType: soft

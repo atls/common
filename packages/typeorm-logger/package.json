@@ -1,7 +1,7 @@
 {
   "name": "@atls/typeorm-logger",
   "repository": "git@github.com:atls/common.git",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "license": "BSD-3 Clause",
   "main": "src/index.ts",
   "files": [
@@ -21,6 +21,6 @@
     "typings": "dist/index.d.ts"
   },
   "dependencies": {
-    "@atls/logger": "workspace:0.0.0"
+    "@atls/logger": "workspace:0.0.1"
   }
 }
