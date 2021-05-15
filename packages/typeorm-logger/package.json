@@ -1,5 +1,5 @@
 {
-  "name": "@atls/logger",
+  "name": "@atls/typeorm-logger",
   "repository": "git@github.com:atls/common.git",
   "version": "0.0.0",
   "license": "BSD-3 Clause",
@@ -13,8 +13,7 @@
     "prepack": "yarn run build"
   },
   "devDependencies": {
-    "@types/node": "^14.14.41",
-    "@types/pino": "^6.3.7"
+    "typeorm": "^0.2.0"
   },
   "publishConfig": {
     "access": "public",
@@ -22,6 +21,6 @@
     "typings": "dist/index.d.ts"
   },
   "dependencies": {
-    "pino": "^6.11.3"
+    "@atls/logger": "workspace:0.0.0"
   }
 }
