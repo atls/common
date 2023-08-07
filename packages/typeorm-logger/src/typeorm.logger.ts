@@ -1,4 +1,5 @@
 import { Logger as ILogger } from 'typeorm'
+
 import { Logger }            from '@atls/logger'
 
 export class TypeOrmLogger implements ILogger {
