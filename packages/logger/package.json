@@ -1,7 +1,7 @@
 {
   "name": "@atls/logger",
-  "repository": "git@github.com:atls/common.git",
   "version": "0.0.1",
+  "repository": "git@github.com:atls/common.git",
   "license": "BSD-3 Clause",
   "main": "src/index.ts",
   "files": [
@@ -13,11 +13,11 @@
     "postpack": "rm -rf dist"
   },
   "dependencies": {
-    "pino": "^6.13.4"
+    "pino": "^8.15.0"
   },
   "devDependencies": {
-    "@types/node": "^17.0.12",
-    "@types/pino": "^6.3.12"
+    "@types/node": "^20.4.8",
+    "@types/pino": "^7.0.5"
   },
   "publishConfig": {
     "access": "public",
