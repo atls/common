@@ -7,10 +7,10 @@
   "devDependencies": {
     "@atls/config-jest": "^0.0.6",
     "@atls/schematics": "^0.0.16",
-    "@jest/core": "^27.4.7",
+    "@jest/core": "^29.6.2",
     "@types/eslint": "^8.4.1",
-    "@types/jest": "^27.4.0",
-    "@types/node": "^20.4.8",
+    "@types/jest": "^29.5.3",
+    "@types/node": "^20.4.9",
     "eslint": "^8.7.0",
     "husky": "8.0.3",
     "typescript": "4.5.5"
