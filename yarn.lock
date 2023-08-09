@@ -56,7 +56,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@atls/config-jest@npm:^0.0.6":
+"@atls/config-jest@npm:0.0.6":
   version: 0.0.6
   resolution: "@atls/config-jest@npm:0.0.6"
   dependencies:
@@ -80,9 +80,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@atls/logger@workspace:packages/logger"
   dependencies:
-    "@types/node": "npm:^20.4.9"
-    "@types/pino": "npm:^7.0.5"
-    pino: "npm:^8.15.0"
+    "@types/node": "npm:20.4.9"
+    "@types/pino": "npm:7.0.5"
+    pino: "npm:8.15.0"
   languageName: unknown
   linkType: soft
 
@@ -99,7 +99,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@atls/schematics@npm:^0.0.16":
+"@atls/schematics@npm:0.0.16":
   version: 0.0.16
   resolution: "@atls/schematics@npm:0.0.16"
   dependencies:
@@ -116,9 +116,9 @@ __metadata:
   resolution: "@atls/typeorm-logger@workspace:packages/typeorm-logger"
   dependencies:
     "@atls/logger": "workspace:0.0.1"
-    typeorm: "npm:^0.2"
+    typeorm: "npm:0.2"
   peerDependencies:
-    typeorm: ^0.2
+    typeorm: 0.2
   languageName: unknown
   linkType: soft
 
@@ -931,7 +931,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jest/core@npm:^29.6.2":
+"@jest/core@npm:29.6.2":
   version: 29.6.2
   resolution: "@jest/core@npm:29.6.2"
   dependencies:
@@ -1340,13 +1340,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/eslint@npm:^8.20.0":
-  version: 8.44.2
-  resolution: "@types/eslint@npm:8.44.2"
+"@types/eslint@npm:8.4.10":
+  version: 8.4.10
+  resolution: "@types/eslint@npm:8.4.10"
   dependencies:
     "@types/estree": "npm:*"
     "@types/json-schema": "npm:*"
-  checksum: 2c707e4dbbb1e7a2f46f331303a736fbb9784ab1fb96e3b1d0238d896cafb2cf47cd268a762fc1d914b45bf6895e79f5a0ce2a5eb7635c400386c1f51ceca11d
+  checksum: 459bcef9a9b7994668c32f853285bea5004dfce293511cf4a9596bdd00ee345a978e96bb82c773c2b03c486847f17194c2fcf36900ee3532549fecd7680f5fc1
   languageName: node
   linkType: hard
 
@@ -1391,7 +1391,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/jest@npm:^29.5.3":
+"@types/jest@npm:29.5.3":
   version: 29.5.3
   resolution: "@types/jest@npm:29.5.3"
   dependencies:
@@ -1415,14 +1415,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^20.4.9":
+"@types/node@npm:20.4.9":
   version: 20.4.9
   resolution: "@types/node@npm:20.4.9"
   checksum: 1a86945e32831c50f6b03a8219bfc921c6d2c9fe30dc01a367c1478ead53804e6aa0eaacc4ec72643c7f4a6a8c53813c3f4f6afd59b7df609407d3022bac6d2d
   languageName: node
   linkType: hard
 
-"@types/pino@npm:^7.0.5":
+"@types/pino@npm:7.0.5":
   version: 7.0.5
   resolution: "@types/pino@npm:7.0.5"
   dependencies:
@@ -2118,12 +2118,12 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "common@workspace:."
   dependencies:
-    "@atls/config-jest": "npm:^0.0.6"
-    "@atls/schematics": "npm:^0.0.16"
-    "@jest/core": "npm:^29.6.2"
-    "@types/eslint": "npm:^8.20.0"
-    "@types/jest": "npm:^29.5.3"
-    "@types/node": "npm:^20.4.9"
+    "@atls/config-jest": "npm:0.0.6"
+    "@atls/schematics": "npm:0.0.16"
+    "@jest/core": "npm:29.6.2"
+    "@types/eslint": "npm:8.4.10"
+    "@types/jest": "npm:29.5.3"
+    "@types/node": "npm:20.4.9"
     eslint: "npm:8.20.0"
     husky: "npm:8.0.3"
     typescript: "npm:4.5.5"
@@ -4239,7 +4239,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pino@npm:*, pino@npm:^8.15.0":
+"pino@npm:*, pino@npm:8.15.0":
   version: 8.15.0
   resolution: "pino@npm:8.15.0"
   dependencies:
@@ -5078,9 +5078,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typeorm@npm:^0.2":
-  version: 0.2.43
-  resolution: "typeorm@npm:0.2.43"
+"typeorm@npm:0.2":
+  version: 0.2.45
+  resolution: "typeorm@npm:0.2.45"
   dependencies:
     "@sqltools/formatter": "npm:^1.2.2"
     app-root-path: "npm:^3.0.0"
@@ -5148,7 +5148,7 @@ __metadata:
       optional: true
   bin:
     typeorm: cli.js
-  checksum: b47a49f511b287d13890efdd500b8542c941032088dc4bded9414aa162ad6ad79162be486622f4e5055484a8167ca3c7a8c525e3e71c005914ce551b35e94f00
+  checksum: 78efd494384f7b68925d77883e7459d26391d033f3b5c299b6303e19e16419201242a76db67cdd48390593c076975f726a106d08f35663d4211a1a73942e5c5f
   languageName: node
   linkType: hard
 

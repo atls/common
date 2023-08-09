@@ -16,10 +16,10 @@
     "@atls/logger": "workspace:0.0.1"
   },
   "devDependencies": {
-    "typeorm": "^0.2"
+    "typeorm": "0.2"
   },
   "peerDependencies": {
-    "typeorm": "^0.2"
+    "typeorm": "0.2"
   },
   "publishConfig": {
     "access": "public",
