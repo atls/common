@@ -2,8 +2,8 @@
  * @jest-environment node
  */
 
-import { configuration } from './logger.configuration'
 import { Logger }        from './logger'
+import { configuration } from './logger.configuration'
 
 describe('logger', () => {
   afterEach(() => {
