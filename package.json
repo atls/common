@@ -1,27 +1,15 @@
 {
   "name": "common",
   "private": true,
+  "type": "module",
   "workspaces": [
-    "packages/*"
+    "packages/**/*"
   ],
   "devDependencies": {
-    "@atls/config-jest": "0.0.6",
-    "@atls/schematics": "0.0.16",
-    "@jest/core": "29.6.2",
-    "@types/eslint": "8.4.10",
-    "@types/jest": "29.5.3",
-    "@types/node": "20.4.9",
-    "eslint": "8.20.0",
+    "@atls/code-service": "^0.1.1",
+    "@types/node": "^20.6.0",
     "husky": "8.0.3",
-    "typescript": "4.5.5"
+    "typescript": "^5.3.3"
   },
-  "packageManager": "yarn@3.6.1",
-  "tools": {
-    "schematic": {
-      "collection": "@atls/schematics",
-      "schematic": "project",
-      "type": "libraries",
-      "migration": "1645277537744"
-    }
-  }
+  "packageManager": "yarn@4.1.1"
 }

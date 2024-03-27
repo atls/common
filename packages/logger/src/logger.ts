@@ -1,86 +1,99 @@
-import { Attributes }    from './logger.interfaces'
-import { Body }          from './logger.interfaces'
-import { Severity }      from './logger.interfaces'
-import { SeverityKind }  from './logger.interfaces'
-import { Record }        from './logger.interfaces'
-import { configuration } from './logger.configuration'
+import type { Context }                    from '@opentelemetry/api'
+import type { LoggerOptions }              from '@opentelemetry/api-logs'
+import type { LogRecord }                  from '@opentelemetry/api-logs'
+import type { LogAttributes }              from '@opentelemetry/api-logs'
+
+import { SeverityNumber }                  from '@opentelemetry/api-logs'
+
+import { LoggerApi }                       from './logger.api.js'
+import { LoggerConfiguration }             from './logger.configuration.js'
+import { LOGGER_NAMESPACE_ATTRIBUTE_NAME } from './logger.constants.js'
+import { severityNumberToText }            from './severity.utils.js'
 
 export class Logger {
-  private severity: SeverityKind
+  constructor(
+    private readonly name: string = 'default',
+    private readonly attributes: LogAttributes = {},
+    private readonly version?: string,
+    private readonly options?: LoggerOptions
+  ) {}
 
-  constructor(private readonly name?: string, private readonly attributes?: Attributes) {
-    this.severity = configuration.getSeverity(name)
+  unspecified(body: string, attributes?: LogAttributes, context?: Context): void {
+    this.log(SeverityNumber.UNSPECIFIED, body, attributes, context)
   }
 
-  setSeverity(severity: SeverityKind) {
-    this.severity = severity
+  trace(body: string, attributes?: LogAttributes, context?: Context): void {
+    this.log(SeverityNumber.TRACE, body, attributes, context)
   }
 
-  trace(body: Body, attributes?: Attributes): void {
-    if (this.severity.number <= Severity.TRACE.number) {
-      configuration.transport.trace(this.buildRecord(Severity.TRACE, body, attributes))
+  debug(body: string, attributes?: LogAttributes, context?: Context): void {
+    this.log(SeverityNumber.DEBUG, body, attributes, context)
+  }
+
+  info(body: string, attributes?: LogAttributes, context?: Context): void {
+    this.log(SeverityNumber.INFO, body, attributes, context)
+  }
+
+  warn(body: string, attributes?: LogAttributes, context?: Context): void {
+    this.log(SeverityNumber.WARN, body, attributes, context)
+  }
+
+  error(body: unknown, attributes?: LogAttributes, context?: Context): void {
+    if (body instanceof Error) {
+      this.log(
+        SeverityNumber.ERROR,
+        body.message,
+        {
+          ...(attributes || {}),
+          '@stack': body.stack,
+        },
+        context
+      )
+    } else {
+      this.log(SeverityNumber.ERROR, body as string, attributes, context)
     }
   }
 
-  debug(body: Body, attributes?: Attributes): void {
-    if (this.severity.number <= Severity.DEBUG.number) {
-      configuration.transport.debug(this.buildRecord(Severity.DEBUG, body, attributes))
+  fatal(body: string, attributes?: LogAttributes, context?: Context): void {
+    this.log(SeverityNumber.FATAL, body, attributes, context)
+  }
+
+  log(
+    severityNumber: SeverityNumber,
+    body: string,
+    attributes?: LogAttributes,
+    context?: Context
+  ): void {
+    if (LoggerConfiguration.accept(severityNumber, this.name)) {
+      LoggerApi.getLoggerProvider()
+        .getLogger(this.name, this.version, this.options)
+        .emit(this.buildRecord(severityNumber, body, attributes, context))
     }
   }
 
-  info(body: Body, attributes?: Attributes): void {
-    if (this.severity.number <= Severity.INFO.number) {
-      configuration.transport.info(this.buildRecord(Severity.INFO, body, attributes))
-    }
+  child(name: string, attributes: LogAttributes = {}): Logger {
+    return new Logger([this.name, name].filter(Boolean).join(':'), {
+      ...this.attributes,
+      ...attributes,
+    })
   }
 
-  warn(body: Body, attributes?: Attributes): void {
-    if (this.severity.number <= Severity.WARN.number) {
-      configuration.transport.warn(this.buildRecord(Severity.WARN, body, attributes))
-    }
-  }
-
-  error(body: Body, attributes?: Attributes): void {
-    if (this.severity.number <= Severity.ERROR.number) {
-      configuration.transport.error(this.buildRecord(Severity.ERROR, body, attributes))
-    }
-  }
-
-  fatal(body: Body, attributes?: Attributes): void {
-    if (this.severity.number <= Severity.FATAL.number) {
-      configuration.transport.fatal(this.buildRecord(Severity.FATAL, body, attributes))
-    }
-  }
-
-  child(name: string, attributes?: Attributes) {
-    return new Logger(this.getName(name), this.mergeAttributes(attributes))
-  }
-
-  protected buildRecord(severityType: SeverityKind, body: Body, attributes?: Attributes): Record {
+  protected buildRecord(
+    severityNumber: SeverityNumber,
+    body: string,
+    attributes: LogAttributes = {},
+    context?: Context
+  ): LogRecord {
     return {
-      name: this.name,
+      severityText: severityNumberToText(severityNumber),
+      severityNumber,
+      attributes: {
+        ...this.attributes,
+        ...attributes,
+        [LOGGER_NAMESPACE_ATTRIBUTE_NAME]: this.name,
+      },
+      context,
       body,
-      attributes: this.mergeAttributes(attributes),
-      severityNumber: severityType.number,
-      severityText: severityType.text,
-      timestamp: Date.now(),
     }
-  }
-
-  protected getName(name?: string): string | undefined {
-    if (!(this.name || name)) {
-      return undefined
-    }
-
-    return [this.name, name].filter(Boolean).join(':')
-  }
-
-  protected mergeAttributes(attributes?: Attributes): Attributes | undefined {
-    if (!(this.attributes || attributes)) {
-      return undefined
-    }
-
-    // eslint-disable-next-line prefer-object-spread
-    return Object.assign({}, this.attributes || {}, attributes || {})
   }
 }
