@@ -4,7 +4,7 @@ import type { ReadableLogRecord }   from '@opentelemetry/sdk-logs'
 import { ExportResultCode }         from '@opentelemetry/core'
 import { ConsoleLogRecordExporter } from '@opentelemetry/sdk-logs'
 
-import { build }                    from './sonic-boom.utils.js'
+import { build }                    from './sonic-boom.utils'
 
 export class SonicBoomLogRecordExporter extends ConsoleLogRecordExporter {
   #stream: { write: (record: string) => void }

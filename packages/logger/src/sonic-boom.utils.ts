@@ -4,10 +4,10 @@
 import { isMainThread } from 'node:worker_threads'
 
 import SonicBoomPkg     from 'sonic-boom'
-// @ts-expect-error
+// @ts-ignore
 import onExit           from 'on-exit-leak-free'
 
-const SonicBoom = SonicBoomPkg.default || SonicBoomPkg
+const SonicBoom = SonicBoomPkg || SonicBoomPkg
 
 function noop() {}
 
