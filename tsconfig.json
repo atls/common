@@ -19,7 +19,7 @@
     "resolveJsonModule": true,
     "strictPropertyInitialization": false,
     "module": "nodenext",
-    "target": "es2021",
+    "target": "es2022",
     "jsx": "react",
     "outDir": "./dist",
     "sourceMap": false,
