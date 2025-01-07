@@ -1,5 +1,18 @@
 
 
+## <small>0.0.3 (2025-01-07)</small>
+    
+
+* chore(common): versions  @atls/core-errors:0.0.1 ([833753a](https://github.com/atls/common/commit/833753a))
+    
+* chore(core-errors): release (#17) ([e486cab](https://github.com/atls/common/commit/e486cab)), closes [#17](https://github.com/atls/common/issues/17)
+    
+
+    
+
+    
+
+
 ## <small>0.0.1 (2025-01-06)</small>
     
 
