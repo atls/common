@@ -75,6 +75,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@atls/guard-clause@workspace:packages/guard-clause":
+  version: 0.0.0-use.local
+  resolution: "@atls/guard-clause@workspace:packages/guard-clause"
+  dependencies:
+    "@types/validator": "npm:^13.7.17"
+    validator: "npm:^13.9.0"
+  languageName: unknown
+  linkType: soft
+
 "@atls/logger@workspace:packages/logger":
   version: 0.0.0-use.local
   resolution: "@atls/logger@workspace:packages/logger"
@@ -809,6 +818,13 @@ __metadata:
   dependencies:
     pino: "npm:*"
   checksum: 10/f1c59f7d9a7b717e014e93a6e3f235cf824c93696f6530d41316a6188eb6e3846ce44941d2641665c6a4d0dc64a63ea24e277b2acff52e766ad7169e1a20f973
+  languageName: node
+  linkType: hard
+
+"@types/validator@npm:^13.7.17":
+  version: 13.12.2
+  resolution: "@types/validator@npm:13.12.2"
+  checksum: 10/564f60cfe112b45e1d747245d1f80db999bbc372b2b6a1c5454441b02c3d6bffbfff4365a10c3cd7874197f14ca5779b435794c7600bdcb541da948405a3b21a
   languageName: node
   linkType: hard
 
@@ -4631,6 +4647,13 @@ __metadata:
   version: 3.0.1
   resolution: "v8-compile-cache-lib@npm:3.0.1"
   checksum: 10/88d3423a52b6aaf1836be779cab12f7016d47ad8430dffba6edf766695e6d90ad4adaa3d8eeb512cc05924f3e246c4a4ca51e089dccf4402caa536b5e5be8961
+  languageName: node
+  linkType: hard
+
+"validator@npm:^13.9.0":
+  version: 13.12.0
+  resolution: "validator@npm:13.12.0"
+  checksum: 10/db6eb0725e2b67d60d30073ae8573982713b5903195d031dc3c7db7e82df8b74e8c13baef8e2106d146d979599fd61a06cde1fec5c148e4abd53d52817ff0fd9
   languageName: node
   linkType: hard
 

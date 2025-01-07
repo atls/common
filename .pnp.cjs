@@ -19,6 +19,10 @@ const RAW_RUNTIME_STATE =
       "reference": "workspace:packages/core-errors"\
     },\
     {\
+      "name": "@atls/guard-clause",\
+      "reference": "workspace:packages/guard-clause"\
+    },\
+    {\
       "name": "@atls/logger",\
       "reference": "workspace:packages/logger"\
     }\
@@ -27,6 +31,7 @@ const RAW_RUNTIME_STATE =
   "ignorePatternData": "(^(?:\\\\.yarn\\\\/sdks(?:\\\\/(?!\\\\.{1,2}(?:\\\\/|$))(?:(?:(?!(?:^|\\\\/)\\\\.{1,2}(?:\\\\/|$)).)*?)|$))$)",\
   "fallbackExclusionList": [\
     ["@atls/core-errors", ["workspace:packages/core-errors"]],\
+    ["@atls/guard-clause", ["workspace:packages/guard-clause"]],\
     ["@atls/logger", ["workspace:packages/logger"]],\
     ["common", ["workspace:."]]\
   ],\
@@ -127,6 +132,17 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./packages/core-errors/",\
         "packageDependencies": [\
           ["@atls/core-errors", "workspace:packages/core-errors"]\
+        ],\
+        "linkType": "SOFT"\
+      }]\
+    ]],\
+    ["@atls/guard-clause", [\
+      ["workspace:packages/guard-clause", {\
+        "packageLocation": "./packages/guard-clause/",\
+        "packageDependencies": [\
+          ["@atls/guard-clause", "workspace:packages/guard-clause"],\
+          ["@types/validator", "npm:13.12.2"],\
+          ["validator", "npm:13.12.0"]\
         ],\
         "linkType": "SOFT"\
       }]\
@@ -1088,6 +1104,15 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["@types/pino", "npm:7.0.5"],\
           ["pino", "npm:8.15.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@types/validator", [\
+      ["npm:13.12.2", {\
+        "packageLocation": "../.yarn/berry/cache/@types-validator-npm-13.12.2-c7c4fd2a77-10.zip/node_modules/@types/validator/",\
+        "packageDependencies": [\
+          ["@types/validator", "npm:13.12.2"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -5647,6 +5672,15 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../.yarn/berry/cache/v8-compile-cache-lib-npm-3.0.1-4886071ece-10.zip/node_modules/v8-compile-cache-lib/",\
         "packageDependencies": [\
           ["v8-compile-cache-lib", "npm:3.0.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["validator", [\
+      ["npm:13.12.0", {\
+        "packageLocation": "../.yarn/berry/cache/validator-npm-13.12.0-6c8a423cbf-10.zip/node_modules/validator/",\
+        "packageDependencies": [\
+          ["validator", "npm:13.12.0"]\
         ],\
         "linkType": "HARD"\
       }]\
