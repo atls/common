@@ -7,6 +7,7 @@ import { NotInstanceDecoratorFactory }               from './not-instance.decora
 import { NotIntegerDecoratorFactory }                from './not-integer.decorator.factory.js'
 import { NotEnumDecoratorFactory }                   from './not-enum.decorator.factory.js'
 import { NotOneOfDecoratorFactory }                  from './not-one-of.decorator.factory.js'
+import { NotStringLengthBetweenDecoratorFactory }    from './not-string-length-between.decorator.factory.js'
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 const factory = (name: string, options?: AbstractGuardExtensionFactoryOptions['options']) => ({
@@ -17,6 +18,7 @@ const factory = (name: string, options?: AbstractGuardExtensionFactoryOptions['o
   NotInteger: NotIntegerDecoratorFactory(name, options),
   NotEnum: NotEnumDecoratorFactory(name, options),
   NotOneOf: NotOneOfDecoratorFactory(name, options),
+  NotStringLengthBetween: NotStringLengthBetweenDecoratorFactory(name, options),
 })
 
 export const Against = (
