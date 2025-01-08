@@ -1,7 +1,7 @@
 import type { AbstractGuardExtensionFactoryOptions } from '../../factory/index.js'
 
-import { GuardFactory }                              from '../../factory/index.js'
 import { NotISO4217GuardExtensionFactory }           from '../../extensions/index.js'
+import { GuardFactory }                              from '../../factory/index.js'
 
 export const NotISO4217DecoratorFactory = (
     parameter: string,

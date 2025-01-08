@@ -1,6 +1,6 @@
-import pino                      from 'pino'
 import { LoggerOptions }         from 'pino'
 import { Logger }                from 'pino'
+import pino                      from 'pino'
 
 import { Severity }              from './logger.interfaces'
 import { SeverityKind }          from './logger.interfaces'

@@ -1,17 +1,18 @@
 import type { AbstractGuardExtensionFactoryOptions } from '../../factory/index.js'
 import type { DecoratorFactoryFn }                   from './decorator.interfaces.js'
 
-import { NotNumberBetweenGuardExtensionFactory }     from '../../extensions/index.js'
+import { NotJsonSchemaValidGuardExtensionFactory }   from '../../extensions/index.js'
 import { GuardFactory }                              from '../../factory/index.js'
 
-export const NotNumberBetweenDecoratorFactory = (
+export const NotJsonSchemaValidDecoratorFactory = (
     parameter: string,
     options?: AbstractGuardExtensionFactoryOptions['options']
   ) =>
-  (from: number, to: number): DecoratorFactoryFn =>
-    function NotNumberBetween(target: any, propertyKey: string, parameterIndex: number): void {
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  (schema: any, defs?: Array<any>): DecoratorFactoryFn =>
+    function NotJsonSchemaValid(target: any, propertyKey: string, parameterIndex: number): void {
       GuardFactory.register(
-        NotNumberBetweenGuardExtensionFactory,
+        NotJsonSchemaValidGuardExtensionFactory,
         target,
         propertyKey,
         parameterIndex,
@@ -19,8 +20,8 @@ export const NotNumberBetweenDecoratorFactory = (
           parameter,
           options,
           metadata: {
-            from,
-            to,
+            schema,
+            defs,
           },
         }
       )

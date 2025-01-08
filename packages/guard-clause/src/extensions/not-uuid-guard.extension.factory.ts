@@ -2,8 +2,8 @@ import type { AbstractGuardExtensionFactoryOptions } from '../factory/index.js'
 
 import isUuidValidatorPkg                            from 'validator/lib/isUUID.js'
 
-import { AbstractGuardExtensionFactory }             from '../factory/index.js'
 import { GuardError }                                from '../errors/index.js'
+import { AbstractGuardExtensionFactory }             from '../factory/index.js'
 
 const isUuidValidator = isUuidValidatorPkg.default || isUuidValidatorPkg
 

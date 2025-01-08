@@ -2,8 +2,8 @@ import type { AbstractGuardExtensionFactoryOptions } from '../factory/index.js'
 
 import isIso4217ValidatorPkg                         from 'validator/lib/isISO4217.js'
 
-import { AbstractGuardExtensionFactory }             from '../factory/index.js'
 import { GuardError }                                from '../errors/index.js'
+import { AbstractGuardExtensionFactory }             from '../factory/index.js'
 
 const isIso4217Validator = isIso4217ValidatorPkg.default || isIso4217ValidatorPkg
 

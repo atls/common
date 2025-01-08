@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 
+import type { GuardError }                           from '../errors/index.js'
 import type { AbstractGuardExtensionFactoryOptions } from './abstract-guard.extension.factory.js'
 import type { AbstractGuardExtensionFactory }        from './abstract-guard.extension.factory.js'
-import type { GuardError }                           from '../errors/index.js'
 
 import { GuardErrors }                               from '../errors/index.js'
 

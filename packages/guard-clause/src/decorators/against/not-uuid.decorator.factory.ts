@@ -1,7 +1,7 @@
 import type { AbstractGuardExtensionFactoryOptions } from '../../factory/index.js'
 
-import { GuardFactory }                              from '../../factory/index.js'
 import { NotUUIDGuardExtensionFactory }              from '../../extensions/index.js'
+import { GuardFactory }                              from '../../factory/index.js'
 
 export const NotUUIDDecoratorFactory = (
     parameter: string,
