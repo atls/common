@@ -40,3 +40,5 @@ body:
       placeholder: Не будь мудаком и приложи ссылку
     validations:
       required: true
+
+projects: ["atls/11"]

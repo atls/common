@@ -43,3 +43,5 @@ body:
       placeholder: Ссылка на фигму, любой другой материал для старта
     validations:
       required: true
+
+projects: ["atls/11"]
