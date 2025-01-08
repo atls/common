@@ -9,8 +9,8 @@ export class NotNumberBetweenGuardExtensionFactory extends AbstractGuardExtensio
     if (
       !(
         typeof paramValue === 'number' &&
-        options.metadata!.from >= paramValue &&
-        options.metadata!.to <= paramValue
+        paramValue >= options.metadata!.from &&
+        paramValue <= options.metadata!.to
       )
     ) {
       throw new GuardError(
