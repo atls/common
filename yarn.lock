@@ -80,6 +80,7 @@ __metadata:
   resolution: "@atls/guard-clause@workspace:packages/guard-clause"
   dependencies:
     "@types/validator": "npm:^13.7.17"
+    ajv: "npm:^8.12.0"
     validator: "npm:^13.9.0"
   languageName: unknown
   linkType: soft
@@ -1199,7 +1200,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ajv@npm:^8.9.0":
+"ajv@npm:^8.12.0, ajv@npm:^8.9.0":
   version: 8.17.1
   resolution: "ajv@npm:8.17.1"
   dependencies:

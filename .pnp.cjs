@@ -142,6 +142,7 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["@atls/guard-clause", "workspace:packages/guard-clause"],\
           ["@types/validator", "npm:13.12.2"],\
+          ["ajv", "npm:8.17.1"],\
           ["validator", "npm:13.12.0"]\
         ],\
         "linkType": "SOFT"\
