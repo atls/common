@@ -1,6 +1,7 @@
 import type { AbstractGuardExtensionFactoryOptions } from '../../factory/index.js'
 
 import { EmptyDecoratorFactory }                     from './empty.decorator.factory.js'
+import { NotBigIntDecoratorFactory }                 from './not-bigint.decorator.factory.js'
 import { NotEnumDecoratorFactory }                   from './not-enum.decorator.factory.js'
 import { NotInstanceDecoratorFactory }               from './not-instance.decorator.factory.js'
 import { NotIntegerDecoratorFactory }                from './not-integer.decorator.factory.js'
@@ -23,6 +24,7 @@ const factory = (name: string, options?: AbstractGuardExtensionFactoryOptions['o
   NotStringLengthBetween: NotStringLengthBetweenDecoratorFactory(name, options),
   NotISO4217: NotISO4217DecoratorFactory(name, options),
   NotJsonSchemaValid: NotJsonSchemaValidDecoratorFactory(name, options),
+  NotBigInt: NotBigIntDecoratorFactory(name, options),
 })
 
 export const Against = (
