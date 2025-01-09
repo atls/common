@@ -39,41 +39,40 @@ export abstract class AbstractGuardExtensionFactory {
 
     const errors: Array<GuardError> = []
 
-    if (methodMap) {
-      const paramIndexes: Map<number, AbstractGuardExtensionFactoryOptions> | undefined =
-        methodMap.get(methodName)
+    if (!methodMap) return errors
 
-      if (paramIndexes) {
-        for (const [index, paramValue] of paramValues.entries()) {
-          if (paramIndexes.has(index)) {
-            const options = paramIndexes.get(index)
+    const paramIndexes: Map<number, AbstractGuardExtensionFactoryOptions> | undefined =
+      methodMap.get(methodName)
 
-            if (
-              !(options!.options?.optional && (paramValue === undefined || paramValue === null))
-            ) {
-              const values: Array<any> = options!.options?.each ? paramValue : [paramValue]
+    if (!paramIndexes) return errors
 
-              if (!Array.isArray(values)) {
-                errors.push(
-                  new GuardError('guard.against.not-array', String(index), paramValue, 'not array')
-                )
-              } else {
-                values.forEach((value) => {
-                  try {
-                    this.performParamValue(value, options!)
-                  } catch (error) {
-                    if (error instanceof GuardError) {
-                      errors.push(error)
-                    } else {
-                      throw error
-                    }
-                  }
-                })
-              }
-            }
-          }
-        }
+    for (const [index, paramValue] of paramValues.entries()) {
+      if (!paramIndexes.has(index)) continue
+      const options = paramIndexes.get(index)
+
+      if (options!.options?.optional && (paramValue === undefined || paramValue === null)) {
+        continue
       }
+
+      const values: Array<any> = options!.options?.each ? paramValue : [paramValue]
+
+      if (!Array.isArray(values)) {
+        errors.push(
+          new GuardError('guard.against.not-array', String(index), paramValue, 'not array')
+        )
+        continue
+      }
+
+      values.forEach((value) => {
+        try {
+          this.performParamValue(value, options!)
+        } catch (error) {
+          if (!(error instanceof GuardError)) {
+            throw error
+          }
+          errors.push(error)
+        }
+      })
     }
 
     return errors
