@@ -1,23 +1,31 @@
-import type { AbstractGuardExtensionFactoryOptions } from '../factory/index.js'
+import type { AbstractGuardExtensionOptions } from '../factory/index.js'
 
-import { GuardError }                                from '../errors/index.js'
-import { AbstractGuardExtensionFactory }             from '../factory/index.js'
+import { GuardError }                         from '../errors/index.js'
+import { AbstractGuardExtension }             from '../factory/index.js'
 
-export class NotStringLengthBetweenGuardExtensionFactory extends AbstractGuardExtensionFactory {
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  override performParamValue(paramValue: any, options: AbstractGuardExtensionFactoryOptions): void {
+export interface NotStringLengthBetweenMetadata {
+  from: number
+  to: number
+}
+
+export class NotStringLengthBetweenGuardExtension extends AbstractGuardExtension<NotStringLengthBetweenMetadata> {
+  override performParamValue(
+    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types, @typescript-eslint/no-explicit-any
+    paramValue: any,
+    options: AbstractGuardExtensionOptions<NotStringLengthBetweenMetadata>
+  ): void {
     if (
       !(
         typeof paramValue === 'string' &&
-        paramValue.length >= options.metadata!.from &&
-        paramValue.length <= options.metadata!.to
+        paramValue.length >= options.metadata.from &&
+        paramValue.length <= options.metadata.to
       )
     ) {
       throw new GuardError(
         'guard.against.not-string-length-between',
         options.parameter,
         paramValue,
-        `not between [${options.metadata!.from as number}, ${options.metadata!.to as number}]`
+        `not between [${options.metadata.from}, ${options.metadata.to}]`
       )
     }
   }

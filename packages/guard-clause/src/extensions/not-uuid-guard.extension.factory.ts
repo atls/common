@@ -1,21 +1,23 @@
-import type { AbstractGuardExtensionFactoryOptions } from '../factory/index.js'
+import type { AbstractGuardExtensionOptions } from '../factory/index.js'
 
-import isUuidValidatorPkg                            from 'validator/lib/isUUID.js'
+import isUuidValidatorPkg                     from 'validator/lib/isUUID.js'
 
-import { GuardError }                                from '../errors/index.js'
-import { AbstractGuardExtensionFactory }             from '../factory/index.js'
+import { GuardError }                         from '../errors/index.js'
+import { AbstractGuardExtension }             from '../factory/index.js'
 
 const isUuidValidator = isUuidValidatorPkg.default || isUuidValidatorPkg
 
-export class NotUUIDGuardExtensionFactory extends AbstractGuardExtensionFactory {
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  override performParamValue(paramValue: any, options: AbstractGuardExtensionFactoryOptions): void {
-    if (!options.metadata?.version) {
-      throw new Error('Guard against uuid version required')
-    }
+export interface NotUUIDMetadata {
+  version: 1 | 2 | 3 | 4 | 5
+}
 
+export class NotUUIDGuardExtension extends AbstractGuardExtension<NotUUIDMetadata> {
+  override performParamValue(
+    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types, @typescript-eslint/no-explicit-any
+    paramValue: any,
+    options: AbstractGuardExtensionOptions<NotUUIDMetadata>
+  ): void {
     if (
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
       !(typeof paramValue === 'string' && isUuidValidator(paramValue, options.metadata.version))
     ) {
       throw new GuardError('guard.against.not-uuid', options.parameter, paramValue, 'not uuid')

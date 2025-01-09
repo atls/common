@@ -1,16 +1,23 @@
-import type { AbstractGuardExtensionFactoryOptions } from '../factory/index.js'
+import type { AbstractGuardExtensionOptions } from '../factory/index.js'
 
-import { GuardError }                                from '../errors/index.js'
-import { AbstractGuardExtensionFactory }             from '../factory/index.js'
+import { GuardError }                         from '../errors/index.js'
+import { AbstractGuardExtension }             from '../factory/index.js'
 
-export class NotInstanceGuardExtensionFactory extends AbstractGuardExtensionFactory {
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  override performParamValue(paramValue: any, options: AbstractGuardExtensionFactoryOptions): void {
+export interface NotInstanceMetadata {
+  targetTypeConstructor: Function
+}
+
+export class NotInstanceGuardExtension extends AbstractGuardExtension<NotInstanceMetadata> {
+  override performParamValue(
+    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types, @typescript-eslint/no-explicit-any
+    paramValue: any,
+    options: AbstractGuardExtensionOptions<NotInstanceMetadata>
+  ): void {
     if (
       !(
-        options.metadata!.targetTypeConstructor &&
-        typeof options.metadata!.targetTypeConstructor === 'function' &&
-        paramValue instanceof options.metadata!.targetTypeConstructor
+        options.metadata.targetTypeConstructor &&
+        typeof options.metadata.targetTypeConstructor === 'function' &&
+        paramValue instanceof options.metadata.targetTypeConstructor
       )
     ) {
       throw new GuardError(
@@ -18,8 +25,8 @@ export class NotInstanceGuardExtensionFactory extends AbstractGuardExtensionFact
         options.parameter,
         paramValue,
         `not instance '${
-          (options.metadata!.targetTypeConstructor?.name ||
-            options.metadata!.targetTypeConstructor) as string
+          (options.metadata.targetTypeConstructor?.name ||
+            options.metadata.targetTypeConstructor) as string
         }'`
       )
     }
