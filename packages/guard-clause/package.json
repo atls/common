@@ -17,11 +17,11 @@
     "postpack": "rm -rf dist"
   },
   "dependencies": {
-    "ajv": "^8.12.0",
-    "validator": "^13.9.0"
+    "ajv": "8.17.1",
+    "validator": "13.12.0"
   },
   "devDependencies": {
-    "@types/validator": "^13.7.17"
+    "@types/validator": "13.12.2"
   },
   "publishConfig": {
     "exports": {
