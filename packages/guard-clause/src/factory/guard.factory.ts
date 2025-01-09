@@ -1,68 +1,36 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 
-import type { GuardError }                           from '../errors/index.js'
-import type { AbstractGuardExtensionFactoryOptions } from './abstract-guard.extension.factory.js'
-import type { AbstractGuardExtensionFactory }        from './abstract-guard.extension.factory.js'
+import type { GuardError }             from '../errors/index.js'
+import type { AbstractGuardExtension } from './abstract-guard.extension.js'
 
-import { GuardErrors }                               from '../errors/index.js'
+import { GuardErrors }                 from '../errors/index.js'
 
-export class GuardFactory {
-  private static extensions: Map<
-    AbstractGuardExtensionFactory['constructor'],
-    AbstractGuardExtensionFactory
-  > = new Map()
+export class GuardStore {
+  private static extensions: Map<string | symbol, Array<AbstractGuardExtension>> = new Map()
 
-  private static extensionsByTargetMethod: Map<
-    any,
-    Map<string, Set<AbstractGuardExtensionFactory['constructor']>>
-  > = new Map()
-
-  static registerExtension(extension: AbstractGuardExtensionFactory): void {
-    this.extensions.set(extension.constructor, extension)
-  }
-
-  static register(
-    extension: typeof AbstractGuardExtensionFactory,
-    target: any,
-    methodName: string,
-    paramIndex: number,
-    options: AbstractGuardExtensionFactoryOptions
-  ): void {
-    if (this.extensions.has(extension)) {
-      this.extensions.get(extension)!.register(target, methodName, paramIndex, options)
-
-      if (!this.extensionsByTargetMethod.has(target)) {
-        this.extensionsByTargetMethod.set(target, new Map())
-      }
-
-      if (!this.extensionsByTargetMethod.get(target)!.has(methodName)) {
-        this.extensionsByTargetMethod.get(target)!.set(methodName, new Set())
-      }
-
-      this.extensionsByTargetMethod.get(target)!.get(methodName)?.add(extension)
-    } else {
-      throw new Error(`Extension for ${extension.constructor.name} not registered`)
+  static add(key: string | symbol, extension: AbstractGuardExtension): void {
+    const extensions = GuardStore.extensions.get(key)
+    if (!extensions) {
+      GuardStore.extensions.set(key, [extension])
+      return
     }
+    extensions.push(extension)
   }
 
-  static perform(target: any, methodName: string, paramValues: Array<any>): void {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  static perform(key: string | symbol, paramValue: any): void {
     const errors: Array<GuardError> = []
 
-    this.extensionsByTargetMethod
-      .get(target)
-      ?.get(methodName)
-      ?.forEach((extension) => {
-        this.extensions
-          .get(extension)!
-          .perform(target, methodName, paramValues)
-          .reverse()
-          .forEach((error) => {
-            errors.push(error)
-          })
-      })
+    const extensions = this.extensions.get(key)
+    if (!extensions) return
+
+    extensions.forEach((extension: AbstractGuardExtension) => {
+      const performErrors = extension.perform(paramValue)
+      errors.push(...performErrors)
+    })
 
     if (errors.length > 0) {
-      throw new GuardErrors(errors.reverse())
+      throw new GuardErrors(errors)
     }
   }
 }
