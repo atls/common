@@ -1,4 +1,4 @@
-import type { AbstractGuardExtensionOptions } from './abstract-guard.extension.factory.js'
+import type { AbstractGuardExtensionOptions } from './abstract-guard.extension.js'
 
 import { strictEqual }                        from 'node:assert/strict'
 import { describe as suite }                  from 'node:test'
@@ -6,7 +6,7 @@ import { beforeEach }                         from 'node:test'
 import { it as test }                         from 'node:test'
 
 import { GuardError }                         from '../errors/index.js'
-import { AbstractGuardExtension }             from './abstract-guard.extension.factory.js'
+import { AbstractGuardExtension }             from './abstract-guard.extension.js'
 
 class TestGuardExtension extends AbstractGuardExtension {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
