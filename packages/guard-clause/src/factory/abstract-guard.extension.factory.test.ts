@@ -1,16 +1,16 @@
-import type { AbstractGuardExtensionFactoryOptions } from './abstract-guard.extension.factory.js'
+import type { AbstractGuardExtensionOptions } from './abstract-guard.extension.factory.js'
 
-import { strictEqual }                               from 'node:assert/strict'
-import { describe as suite }                         from 'node:test'
-import { beforeEach }                                from 'node:test'
-import { it as test }                                from 'node:test'
+import { strictEqual }                        from 'node:assert/strict'
+import { describe as suite }                  from 'node:test'
+import { beforeEach }                         from 'node:test'
+import { it as test }                         from 'node:test'
 
-import { GuardError }                                from '../errors/index.js'
-import { AbstractGuardExtensionFactory }             from './abstract-guard.extension.factory.js'
+import { GuardError }                         from '../errors/index.js'
+import { AbstractGuardExtension }             from './abstract-guard.extension.factory.js'
 
-class TestGuardExtensionFactory extends AbstractGuardExtensionFactory {
+class TestGuardExtension extends AbstractGuardExtension {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  performParamValue(paramValue: any, options: AbstractGuardExtensionFactoryOptions): void {
+  performParamValue(paramValue: any, options: AbstractGuardExtensionOptions): void {
     if (typeof paramValue !== 'string') {
       throw new GuardError('guard.against.not-string', options.parameter, paramValue, 'not string')
     }
@@ -18,40 +18,36 @@ class TestGuardExtensionFactory extends AbstractGuardExtensionFactory {
 }
 
 suite('AbstractGuardExtensionFactory', () => {
-  let factory: TestGuardExtensionFactory
+  let extension: TestGuardExtension
 
   beforeEach(() => {
-    factory = new TestGuardExtensionFactory()
+    extension = new TestGuardExtension()
   })
 
   test('should return no errors when valid parameters are provided', () => {
-    const target = {}
-    const methodName = 'testMethod'
-    const paramIndex = 0
-    const options: AbstractGuardExtensionFactoryOptions = {
+    const options: AbstractGuardExtensionOptions = {
       parameter: 'param',
       options: { optional: false },
+      metadata: null,
     }
 
-    factory.register(target, methodName, paramIndex, options)
+    extension.setOptions(options)
 
-    const errors = factory.perform(target, methodName, ['validString'])
+    const errors = extension.perform('validString')
 
     strictEqual(errors.length, 0)
   })
 
   test('should return an error when a parameter is invalid', () => {
-    const target = {}
-    const methodName = 'testMethod'
-    const paramIndex = 0
-    const options: AbstractGuardExtensionFactoryOptions = {
+    const options: AbstractGuardExtensionOptions = {
       parameter: 'param',
       options: { optional: false },
+      metadata: null,
     }
 
-    factory.register(target, methodName, paramIndex, options)
+    extension.setOptions(options)
 
-    const errors = factory.perform(target, methodName, [123])
+    const errors = extension.perform(123)
 
     strictEqual(errors.length, 1)
     const isErrorInstanceOfGuardError = errors[0] instanceof GuardError
@@ -60,50 +56,44 @@ suite('AbstractGuardExtensionFactory', () => {
   })
 
   test('should skip optional parameters when they are undefined or null', () => {
-    const target = {}
-    const methodName = 'testMethod'
-    const paramIndex = 0
-    const options: AbstractGuardExtensionFactoryOptions = {
+    const options: AbstractGuardExtensionOptions = {
       parameter: 'param',
       options: { optional: true },
+      metadata: null,
     }
 
-    factory.register(target, methodName, paramIndex, options)
+    extension.setOptions(options)
 
-    const errors = factory.perform(target, methodName, [undefined])
+    const errors = extension.perform(undefined)
 
     strictEqual(errors.length, 0)
   })
 
   test('should validate each value when `each` is true', () => {
-    const target = {}
-    const methodName = 'testMethod'
-    const paramIndex = 0
-    const options: AbstractGuardExtensionFactoryOptions = {
+    const options: AbstractGuardExtensionOptions = {
       parameter: 'param',
       options: { each: true },
+      metadata: null,
     }
 
-    factory.register(target, methodName, paramIndex, options)
+    extension.setOptions(options)
 
-    const errors = factory.perform(target, methodName, [['validString', 123]])
+    const errors = extension.perform(['validString', 123])
 
     strictEqual(errors.length, 1)
     strictEqual(errors[0].code, 'guard.against.not-string')
   })
 
   test('should return an error if the parameter is not an array but `each` is true', () => {
-    const target = {}
-    const methodName = 'testMethod'
-    const paramIndex = 0
-    const options: AbstractGuardExtensionFactoryOptions = {
+    const options: AbstractGuardExtensionOptions = {
       parameter: 'param',
       options: { each: true },
+      metadata: null,
     }
 
-    factory.register(target, methodName, paramIndex, options)
+    extension.setOptions(options)
 
-    const errors = factory.perform(target, methodName, ['notArray'])
+    const errors = extension.perform('notArray')
 
     strictEqual(errors.length, 1)
     strictEqual(errors[0].code, 'guard.against.not-array')
