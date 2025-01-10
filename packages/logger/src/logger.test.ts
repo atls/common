@@ -1,68 +1,116 @@
-import { describe }      from '@jest/globals'
-import { afterEach }     from '@jest/globals'
-import { jest }          from '@jest/globals'
-import { it }            from '@jest/globals'
-import { expect }        from '@jest/globals'
+/* eslint-disable */
+import type { LogRecord }    from './logger.interfaces.js'
 
-import { Logger }        from './logger'
-import { configuration } from './logger.configuration'
+import { strictEqual }       from 'node:assert/strict'
+import { describe as suite } from 'node:test'
+import { beforeEach }        from 'node:test'
+import { afterEach }         from 'node:test'
+import { test }              from 'node:test'
 
-describe('logger', () => {
-  afterEach(() => {
-    jest.clearAllMocks()
+import { Logger }            from './logger.js'
+import { configuration }     from './logger.configuration.js'
+
+suite('logger', () => {
+  let originalTransport: Logger
+
+  beforeEach(() => {
+    // @ts-expect-error - Transport is a Logger
+    originalTransport = configuration.transport
+    // @ts-expect-error - Transport is a Logger
+    configuration.transport = {
+      info: () => {},
+      debug: () => {},
+      warn: () => {},
+      error: () => {},
+      fatal: () => {},
+      trace: () => {},
+    }
   })
 
-  it('log body', () => {
-    const log = jest.spyOn(configuration.transport, 'info').mockImplementation(() => undefined)
+  afterEach(() => {
+    // @ts-expect-error - Transport is a Logger
+    configuration.transport = originalTransport
+  })
+
+  test('log body', () => {
+    let calledWith
+    // @ts-expect-error - mock LogFn
+    configuration.transport.info = (record: LogRecord) => {
+      calledWith = record
+    }
 
     new Logger().info('test')
 
-    expect(log).toHaveBeenCalledWith(expect.objectContaining({ body: 'test' }))
+    // @ts-expect-error - body is a string
+    strictEqual(calledWith.body, 'test')
   })
 
-  it('log attributes', () => {
-    const log = jest.spyOn(configuration.transport, 'info').mockImplementation(() => undefined)
+  test('log attributes', () => {
+    let calledWith
+    // @ts-expect-error - mock LogFn
+    configuration.transport.info = (record: LogRecord) => {
+      calledWith = record
+    }
 
     new Logger().info('test', { attr: 'test' })
 
-    expect(log).toHaveBeenCalledWith(
-      expect.objectContaining({ body: 'test', attributes: { attr: 'test' } })
-    )
+    // @ts-expect-error - attributes
+    strictEqual(calledWith.attributes.attr, 'test')
   })
 
-  it('log name', () => {
-    const log = jest.spyOn(configuration.transport, 'info').mockImplementation(() => undefined)
+  test('log name', () => {
+    let calledWith
+    // @ts-expect-error - mock LogFn
+    configuration.transport.info = (record) => {
+      calledWith = record
+    }
 
     new Logger('test').info('test')
 
-    expect(log).toHaveBeenCalledWith(expect.objectContaining({ name: 'test' }))
+    // @ts-expect-error - name
+    strictEqual(calledWith.name, 'test')
   })
 
-  it('log child name', () => {
-    const log = jest.spyOn(configuration.transport, 'info').mockImplementation(() => undefined)
+  test('log child name', () => {
+    let calledWith
+    // @ts-expect-error - mock LogFn
+    configuration.transport.info = (record) => {
+      calledWith = record
+    }
 
     new Logger('parent').child('child').info('test')
 
-    expect(log).toHaveBeenCalledWith(expect.objectContaining({ name: 'parent:child' }))
+    // @ts-expect-error - name
+    strictEqual(calledWith.name, 'parent:child')
   })
 
-  it('log child attributes', () => {
-    const log = jest.spyOn(configuration.transport, 'info').mockImplementation(() => undefined)
+  test('log child attributes', () => {
+    let calledWith
+    // @ts-expect-error - mock LogFn
+    configuration.transport.info = (record) => {
+      calledWith = record
+    }
 
     new Logger('parent', { parent: true }).child('child', { child: true }).info('test')
 
-    expect(log).toHaveBeenCalledWith(
-      expect.objectContaining({ attributes: { parent: true, child: true } })
-    )
+    // @ts-expect-error - attributes
+    strictEqual(calledWith.attributes.parent, true)
+    // @ts-expect-error - attributes
+    strictEqual(calledWith.attributes.child, true)
   })
 
-  it('log debug enabled', () => {
+  test('log debug enabled', () => {
     configuration.setDebug('debug')
 
-    const log = jest.spyOn(configuration.transport, 'debug').mockImplementation(() => undefined)
+    let calledWith
+    // @ts-expect-error - mock LogFn
+    configuration.transport.debug = (record) => {
+      calledWith = record
+    }
 
     new Logger('debug').debug('debug')
 
-    expect(log).toHaveBeenCalledWith(expect.objectContaining({ body: 'debug' }))
+    // @ts-expect-error - body
+    strictEqual(calledWith.body, 'debug')
   })
 })
