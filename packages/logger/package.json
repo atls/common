@@ -3,6 +3,7 @@
   "version": "0.0.2",
   "repository": "git@github.com:atls/common.git",
   "license": "BSD-3 Clause",
+  "type": "module",
   "main": "src/index.ts",
   "files": [
     "dist"

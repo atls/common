@@ -1,3 +1,3 @@
-export * from './logger.configuration'
-export * from './logger.interfaces'
-export * from './logger'
+export * from './logger.configuration.js'
+export * from './logger.interfaces.js'
+export * from './logger.js'

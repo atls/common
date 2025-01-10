@@ -1,7 +1,7 @@
-import type { SeverityText } from '../logger.interfaces'
-import type { LogRecord }    from '../logger.interfaces'
+import type { SeverityText } from '../logger.interfaces.js'
+import type { LogRecord }    from '../logger.interfaces.js'
 
-import { SeverityName }      from '../logger.interfaces'
+import { SeverityName }      from '../logger.interfaces.js'
 
 const serviceContext = {
   service: process.env.SERVICE_NAME || process.env.SERVICE_CONTEXT_NAME || process.env.HOSTNAME,

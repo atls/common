@@ -1,10 +1,10 @@
-import type { Attributes }   from './logger.interfaces'
-import type { Body }         from './logger.interfaces'
-import type { SeverityKind } from './logger.interfaces'
-import type { LogRecord }    from './logger.interfaces'
+import type { Attributes }   from './logger.interfaces.js'
+import type { Body }         from './logger.interfaces.js'
+import type { SeverityKind } from './logger.interfaces.js'
+import type { LogRecord }    from './logger.interfaces.js'
 
-import { Severity }          from './logger.interfaces'
-import { configuration }     from './logger.configuration'
+import { Severity }          from './logger.interfaces.js'
+import { configuration }     from './logger.configuration.js'
 
 export class Logger {
   private severity: SeverityKind

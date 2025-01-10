@@ -1,1 +1,1 @@
-export * from './cloud-logging.formatter'
+export * from './cloud-logging.formatter.js'

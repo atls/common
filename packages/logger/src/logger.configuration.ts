@@ -1,12 +1,12 @@
 import type { LoggerOptions }    from 'pino'
 import type { Logger }           from 'pino'
 
-import type { SeverityKind }     from './logger.interfaces'
+import type { SeverityKind }     from './logger.interfaces.js'
 
-import pino                      from 'pino'
+import { pino }                  from 'pino'
 
-import { Severity }              from './logger.interfaces'
-import { CloudLoggingFormatter } from './transport'
+import { Severity }              from './logger.interfaces.js'
+import { CloudLoggingFormatter } from './transport/index.js'
 
 export class Configuration {
   debug?: Array<string>
