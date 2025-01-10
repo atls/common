@@ -1,6 +1,8 @@
-/**
- * @jest-environment node
- */
+import { describe }      from '@jest/globals'
+import { afterEach }     from '@jest/globals'
+import { jest }          from '@jest/globals'
+import { it }            from '@jest/globals'
+import { expect }        from '@jest/globals'
 
 import { Logger }        from './logger'
 import { configuration } from './logger.configuration'

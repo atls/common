@@ -1,22 +1,21 @@
 export type AttributeValue =
-  | string
-  | number
+  | Array<boolean | null | undefined>
+  | Array<number | null | undefined>
+  | Array<string | null | undefined>
   | boolean
-  | Array<null | undefined | string>
-  | Array<null | undefined | number>
-  | Array<null | undefined | boolean>
+  | number
+  | string
 
-export interface Attributes {
-  [attributeKey: string]: AttributeValue | undefined
-}
+export type Attributes = Record<string, AttributeValue>
 
-export type BodyData = { [key: string]: any }
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type BodyData = Record<string, any>
 
-export type Body = string | Error | BodyData | any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-redundant-type-constituents
+export type Body = BodyData | Error | any | string
 
 export type SeverityNumber = number
 
-// eslint-disable-next-line no-shadow
 export enum SeverityName {
   TRACE = 'TRACE',
   DEBUG = 'DEBUG',
@@ -65,7 +64,7 @@ export class Severity {
   }
 }
 
-export interface Record {
+export interface LogRecord {
   timestamp: number
   traceId?: string
   spanId?: string
@@ -74,5 +73,6 @@ export interface Record {
   name?: string
   body: Body
   attributes?: Attributes
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   resource?: any
 }
