@@ -8,7 +8,7 @@ export const NotISO4217DecoratorFactory = (
     options?: AbstractGuardExtensionFactoryOptions['options']
   ) =>
   () =>
-    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types, @typescript-eslint/no-explicit-any
     function NotISO4217(target: any, propertyKey: string, parameterIndex: number): void {
       GuardFactory.register(NotISO4217GuardExtensionFactory, target, propertyKey, parameterIndex, {
         parameter,

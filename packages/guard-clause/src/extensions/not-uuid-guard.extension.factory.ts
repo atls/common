@@ -8,7 +8,7 @@ import { AbstractGuardExtensionFactory }             from '../factory/index.js'
 const isUuidValidator = isUuidValidatorPkg.default || isUuidValidatorPkg
 
 export class NotUUIDGuardExtensionFactory extends AbstractGuardExtensionFactory {
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types, @typescript-eslint/no-explicit-any
   override performParamValue(paramValue: any, options: AbstractGuardExtensionFactoryOptions): void {
     if (!options.metadata?.version) {
       throw new Error('Guard against uuid version required')

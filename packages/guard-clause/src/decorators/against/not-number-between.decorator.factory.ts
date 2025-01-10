@@ -9,6 +9,7 @@ export const NotNumberBetweenDecoratorFactory = (
     options?: AbstractGuardExtensionFactoryOptions['options']
   ) =>
   (from: number, to: number): DecoratorFactoryFn =>
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     function NotNumberBetween(target: any, propertyKey: string, parameterIndex: number): void {
       GuardFactory.register(
         NotNumberBetweenGuardExtensionFactory,

@@ -8,7 +8,7 @@ import { AbstractGuardExtensionFactory }             from '../factory/index.js'
 const isIso4217Validator = isIso4217ValidatorPkg.default || isIso4217ValidatorPkg
 
 export class NotISO4217GuardExtensionFactory extends AbstractGuardExtensionFactory {
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types, @typescript-eslint/no-explicit-any
   override performParamValue(paramValue: any, options: AbstractGuardExtensionFactoryOptions): void {
     if (!(typeof paramValue === 'string' && isIso4217Validator(paramValue))) {
       throw new GuardError(

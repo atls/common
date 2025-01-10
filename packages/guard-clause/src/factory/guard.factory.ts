@@ -1,4 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 
 import type { GuardError }                           from '../errors/index.js'
 import type { AbstractGuardExtensionFactoryOptions } from './abstract-guard.extension.factory.js'

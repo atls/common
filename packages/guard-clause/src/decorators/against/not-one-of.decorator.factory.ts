@@ -9,6 +9,7 @@ export const NotOneOfDecoratorFactory = (
     options?: AbstractGuardExtensionFactoryOptions['options']
   ) =>
   (oneOf: object): DecoratorFactoryFn =>
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     function NotOneOf(target: any, propertyKey: string, parameterIndex: number): void {
       GuardFactory.register(NotOneOfGuardExtensionFactory, target, propertyKey, parameterIndex, {
         parameter,

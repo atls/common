@@ -9,6 +9,7 @@ export const NotIntegerDecoratorFactory = (
     options?: AbstractGuardExtensionFactoryOptions['options']
   ) =>
   (): DecoratorFactoryFn =>
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     function NotInteger(target: any, propertyKey: string, parameterIndex: number): void {
       GuardFactory.register(NotIntegerGuardExtensionFactory, target, propertyKey, parameterIndex, {
         parameter,

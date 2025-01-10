@@ -5,8 +5,10 @@ export class GuardError extends Error {
 
   public readonly parameter: string
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public readonly value: any
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   constructor(code: string, parameter: string, value: any, message: string) {
     super()
 

@@ -9,6 +9,7 @@ export const NotBigIntDecoratorFactory = (
     options?: AbstractGuardExtensionFactoryOptions['options']
   ) =>
   (): DecoratorFactoryFn =>
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     function NotBigInt(target: any, propertyKey: string, parameterIndex: number): void {
       GuardFactory.register(NotBigIntGuardExtensionFactory, target, propertyKey, parameterIndex, {
         parameter,

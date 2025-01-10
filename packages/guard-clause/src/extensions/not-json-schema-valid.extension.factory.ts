@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import type { AnySchema }                            from 'ajv'
 
 import type { AbstractGuardExtensionFactoryOptions } from '../factory/index.js'
@@ -10,7 +11,7 @@ import { AbstractGuardExtensionFactory }             from '../factory/index.js'
 const Ajv = AjvPkg.default || AjvPkg
 
 export class NotJsonSchemaValidGuardExtensionFactory extends AbstractGuardExtensionFactory {
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types, @typescript-eslint/no-explicit-any
   override performParamValue(paramValue: any, options: AbstractGuardExtensionFactoryOptions): void {
     const ajv = new Ajv()
 

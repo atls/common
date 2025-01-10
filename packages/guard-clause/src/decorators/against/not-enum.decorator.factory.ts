@@ -9,6 +9,7 @@ export const NotEnumDecoratorFactory = (
     options?: AbstractGuardExtensionFactoryOptions['options']
   ) =>
   (targetEnum: object): DecoratorFactoryFn =>
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     function NotEnum(target: any, propertyKey: string, parameterIndex: number): void {
       GuardFactory.register(NotEnumGuardExtensionFactory, target, propertyKey, parameterIndex, {
         parameter,

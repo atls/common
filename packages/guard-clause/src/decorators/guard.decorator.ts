@@ -5,6 +5,7 @@
 import { GuardFactory } from '../factory/index.js'
 
 export const Guard = () =>
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   function GuardD(target: any, propertyKey: string, descriptor: PropertyDescriptor): void {
     const originalMethod = descriptor.value
 

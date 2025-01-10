@@ -9,6 +9,7 @@ export const EmptyDecoratorFactory = (
     options?: AbstractGuardExtensionFactoryOptions['options']
   ) =>
   (): DecoratorFactoryFn =>
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     function Empty(target: any, propertyKey: string, parameterIndex: number): void {
       GuardFactory.register(NotEmptyGuardExtensionFactory, target, propertyKey, parameterIndex, {
         parameter,

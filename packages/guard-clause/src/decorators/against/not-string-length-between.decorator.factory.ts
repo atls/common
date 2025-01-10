@@ -10,6 +10,7 @@ export const NotStringLengthBetweenDecoratorFactory = (
   ) =>
   (from: number, to: number): DecoratorFactoryFn =>
     function NotStringLengthBetween(
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       target: any,
       propertyKey: string,
       parameterIndex: number
