@@ -3,6 +3,7 @@
   "version": "0.0.2",
   "repository": "git@github.com:atls/common.git",
   "license": "BSD-3 Clause",
+  "type": "module",
   "main": "src/index.ts",
   "files": [
     "dist"
@@ -16,6 +17,7 @@
     "pino": "8.15.0"
   },
   "devDependencies": {
+    "@jest/globals": "29.7.0",
     "@types/node": "20.4.9",
     "@types/pino": "7.0.5"
   },

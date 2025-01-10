@@ -1,13 +1,14 @@
-import { SeverityName } from '../logger.interfaces'
-import { SeverityText } from '../logger.interfaces'
-import { Record }       from '../logger.interfaces'
+import type { SeverityText } from '../logger.interfaces.js'
+import type { LogRecord }    from '../logger.interfaces.js'
+
+import { SeverityName }      from '../logger.interfaces.js'
 
 const serviceContext = {
   service: process.env.SERVICE_NAME || process.env.SERVICE_CONTEXT_NAME || process.env.HOSTNAME,
   version: process.env.SERVICE_CONTEXT_VERSION,
 }
 
-const convertSeverity = (severity: SeverityText) => {
+const convertSeverity = (severity: SeverityText): string => {
   switch (severity) {
     case SeverityName.TRACE:
       return 'DEFAULT'
@@ -27,11 +28,9 @@ const convertSeverity = (severity: SeverityText) => {
 }
 
 export class CloudLoggingFormatter {
-  log(object) {
-    return CloudLoggingFormatter.format(object as Record)
-  }
-
-  static format(record: Record) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  static format(record: LogRecord): any {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const entry: any = {
       severity: convertSeverity(record.severityText),
       logName: record.name,
@@ -55,5 +54,10 @@ export class CloudLoggingFormatter {
     }
 
     return entry
+  }
+
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types, @typescript-eslint/no-explicit-any
+  log(object: any): any {
+    return CloudLoggingFormatter.format(object as LogRecord)
   }
 }

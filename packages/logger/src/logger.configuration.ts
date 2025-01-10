@@ -1,13 +1,15 @@
-import pino                      from 'pino'
-import { LoggerOptions }         from 'pino'
-import { Logger }                from 'pino'
+import type { LoggerOptions }    from 'pino'
+import type { Logger }           from 'pino'
 
-import { Severity }              from './logger.interfaces'
-import { SeverityKind }          from './logger.interfaces'
-import { CloudLoggingFormatter } from './transport'
+import type { SeverityKind }     from './logger.interfaces.js'
+
+import { pino }                  from 'pino'
+
+import { Severity }              from './logger.interfaces.js'
+import { CloudLoggingFormatter } from './transport/index.js'
 
 export class Configuration {
-  debug?: string[]
+  debug?: Array<string>
 
   severity: SeverityKind
 
@@ -19,6 +21,7 @@ export class Configuration {
     }
 
     if (process.env.LOG_LEVEL) {
+      // @ts-expect-error - Severity is a string
       this.severity = Severity[process.env.LOG_LEVEL] || Severity.INFO
     } else {
       this.severity = Severity.INFO
@@ -37,7 +40,7 @@ export class Configuration {
     this.transport = pino(transportOptions)
   }
 
-  getSeverity(name?: string) {
+  getSeverity(name?: string): SeverityKind {
     if (this.debug && name && this.debug.includes(name)) {
       return Severity.DEBUG
     }
@@ -45,7 +48,7 @@ export class Configuration {
     return this.severity
   }
 
-  setDebug(debug: string) {
+  setDebug(debug: string): void {
     this.debug = debug.split(',')
   }
 }

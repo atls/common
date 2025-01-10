@@ -1,18 +1,22 @@
-import { Attributes }    from './logger.interfaces'
-import { Body }          from './logger.interfaces'
-import { Severity }      from './logger.interfaces'
-import { SeverityKind }  from './logger.interfaces'
-import { Record }        from './logger.interfaces'
-import { configuration } from './logger.configuration'
+import type { Attributes }   from './logger.interfaces.js'
+import type { Body }         from './logger.interfaces.js'
+import type { SeverityKind } from './logger.interfaces.js'
+import type { LogRecord }    from './logger.interfaces.js'
+
+import { Severity }          from './logger.interfaces.js'
+import { configuration }     from './logger.configuration.js'
 
 export class Logger {
   private severity: SeverityKind
 
-  constructor(private readonly name?: string, private readonly attributes?: Attributes) {
+  constructor(
+    private readonly name?: string,
+    private readonly attributes?: Attributes
+  ) {
     this.severity = configuration.getSeverity(name)
   }
 
-  setSeverity(severity: SeverityKind) {
+  setSeverity(severity: SeverityKind): void {
     this.severity = severity
   }
 
@@ -52,11 +56,15 @@ export class Logger {
     }
   }
 
-  child(name: string, attributes?: Attributes) {
+  child(name: string, attributes?: Attributes): Logger {
     return new Logger(this.getName(name), this.mergeAttributes(attributes))
   }
 
-  protected buildRecord(severityType: SeverityKind, body: Body, attributes?: Attributes): Record {
+  protected buildRecord(
+    severityType: SeverityKind,
+    body: Body,
+    attributes?: Attributes
+  ): LogRecord {
     return {
       name: this.name,
       body,
