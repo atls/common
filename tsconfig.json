@@ -28,5 +28,5 @@
     "noImplicitOverride": true,
     "skipLibCheck": true
   },
-  "include": ["packages/**/*", "examples/**/*"]
+  "include": ["project.types.d.ts", "packages/**/*"]
 }
