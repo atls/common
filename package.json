@@ -1,6 +1,7 @@
 {
   "name": "common",
   "private": true,
+  "type": "module",
   "workspaces": [
     "packages/**/*",
     "examples/**/*"
@@ -9,15 +10,13 @@
     "prepare": "husky"
   },
   "devDependencies": {
-    "@atls/code-service": "0.1.1",
-    "@atls/prettier-plugin": "0.0.8",
+    "@atls/code-runtime": "2.1.14",
     "@atls/schematics": "0.0.26",
-    "@types/node": "20.11.30",
-    "husky": "9.0.11",
-    "prettier": "3.1.1",
-    "typescript": "5.3.3"
+    "@types/node": "22.15.3",
+    "eslint": "9.25.1",
+    "typescript": "5.5.4"
   },
-  "packageManager": "yarn@4.1.1",
+  "packageManager": "yarn@4.10.3",
   "tools": {
     "schematic": {
       "collection": "@atls/schematics",
