@@ -4,7 +4,7 @@ import type { ReadableLogRecord }   from '@opentelemetry/sdk-logs'
 import { ExportResultCode }         from '@opentelemetry/core'
 import { ConsoleLogRecordExporter } from '@opentelemetry/sdk-logs'
 
-import { build }                    from './sonic-boom.utils'
+import { build }                    from './sonic-boom.utils.js'
 
 export class SonicBoomLogRecordExporter extends ConsoleLogRecordExporter {
   #stream: { write: (record: string) => void }
@@ -27,7 +27,7 @@ export class SonicBoomLogRecordExporter extends ConsoleLogRecordExporter {
     done?: (result: ExportResult) => void
   ): void {
     for (const logRecord of logRecords) {
-      // @ts-expect-error
+      // @ts-expect-error -- accessing protected exporter internals to format log record payload
       const record = JSON.stringify(this._exportInfo(logRecord)) // eslint-disable-line
 
       this.#stream.write(`${record}\n`)

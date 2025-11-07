@@ -1,8 +1,8 @@
-import { Module } from '@nestjs/common'
-import { ServiceEntrypointProvider } from './service-entrypoint.provider'
+import { Module }                    from '@nestjs/common'
+
+import { ServiceEntrypointProvider } from './service-entrypoint.provider.js'
 
 @Module({
-  providers: [ServiceEntrypointProvider]
+  providers: [ServiceEntrypointProvider],
 })
-export class ExampleServiceEntrypointModule {
-}
+export class ExampleServiceEntrypointModule {}

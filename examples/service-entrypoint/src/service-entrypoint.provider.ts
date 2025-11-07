@@ -1,11 +1,12 @@
-import { Logger }     from '@atls/logger'
 import { Injectable } from '@nestjs/common'
+
+import { Logger }     from '@atls/logger'
 
 @Injectable()
 export class ServiceEntrypointProvider {
-  private logger = new Logger('Entryprovider')
+  private logger = new Logger('Entry Provider')
 
   constructor() {
-    this.logger.log(1, 'hey')
+    this.logger.log(1, 'Hey мотхерфукер!11')
   }
 }

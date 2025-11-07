@@ -5,10 +5,10 @@ import type { LogAttributes }              from '@opentelemetry/api-logs'
 
 import { SeverityNumber }                  from '@opentelemetry/api-logs'
 
-import { LoggerApi }                       from './logger.api'
-import { LoggerConfiguration }             from './logger.configuration'
-import { LOGGER_NAMESPACE_ATTRIBUTE_NAME } from './logger.constants'
-import { severityNumberToText }            from './severity.utils'
+import { LoggerApi }                       from './logger.api.js'
+import { LoggerConfiguration }             from './logger.configuration.js'
+import { LOGGER_NAMESPACE_ATTRIBUTE_NAME } from './logger.constants.js'
+import { severityNumberToText }            from './severity.utils.js'
 
 export class Logger {
   constructor(

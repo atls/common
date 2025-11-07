@@ -1,7 +1,8 @@
-import { Logger }      from '@atls/logger'
-import { NestFactory } from '@nestjs/core'
+import { NestFactory }                    from '@nestjs/core'
 
-import { ExampleServiceEntrypointModule } from './example-service-entrypoint.module'
+import { Logger }                         from '@atls/logger'
+
+import { ExampleServiceEntrypointModule } from './example-service-entrypoint.module.js'
 
 declare const module: {
   hot: {
