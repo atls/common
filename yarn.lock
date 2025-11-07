@@ -151,13 +151,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@atls/core-errors@workspace:packages/core-errors":
+"@atls/core-errors@workspace:*, @atls/core-errors@workspace:packages/core-errors":
   version: 0.0.0-use.local
   resolution: "@atls/core-errors@workspace:packages/core-errors"
   languageName: unknown
   linkType: soft
 
-"@atls/guard-clause@workspace:packages/guard-clause":
+"@atls/guard-clause@workspace:*, @atls/guard-clause@workspace:packages/guard-clause":
   version: 0.0.0-use.local
   resolution: "@atls/guard-clause@workspace:packages/guard-clause"
   dependencies:
@@ -865,6 +865,30 @@ __metadata:
   checksum: 10/b11f8d13f3418276df654b5276443f95742484c3c83e74f90f92bff01315118507a082edf1e74903b284106447660c31e5f29678730f647fb25e766ce47c56f0
   languageName: node
   linkType: hard
+
+"@common-example/core-errors@workspace:examples/core-errors":
+  version: 0.0.0-use.local
+  resolution: "@common-example/core-errors@workspace:examples/core-errors"
+  dependencies:
+    "@atls/core-errors": "workspace:*"
+  languageName: unknown
+  linkType: soft
+
+"@common-example/guard-clause@workspace:examples/guard-clause":
+  version: 0.0.0-use.local
+  resolution: "@common-example/guard-clause@workspace:examples/guard-clause"
+  dependencies:
+    "@atls/guard-clause": "workspace:*"
+  languageName: unknown
+  linkType: soft
+
+"@common-example/logger@workspace:examples/logger":
+  version: 0.0.0-use.local
+  resolution: "@common-example/logger@workspace:examples/logger"
+  dependencies:
+    "@atls/logger": "workspace:*"
+  languageName: unknown
+  linkType: soft
 
 "@common-example/service-entrypoint@workspace:examples/service-entrypoint":
   version: 0.0.0-use.local

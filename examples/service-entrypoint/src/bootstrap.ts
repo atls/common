@@ -4,25 +4,36 @@ import { Logger }                         from '@atls/logger'
 
 import { ExampleServiceEntrypointModule } from './example-service-entrypoint.module.js'
 
-declare const module: {
-  hot: {
+type HotModule = ImportMeta & {
+  hot?: {
     accept: VoidFunction
     dispose: (callback: VoidFunction) => void
   }
 }
 
-const bootstrap = async () => {
+const logger = new Logger()
+
+const bootstrap = async (): Promise<void> => {
   const app = await NestFactory.create(ExampleServiceEntrypointModule, {
-    logger: new Logger(),
+    logger,
   })
 
   app.enableShutdownHooks()
   await app.listen(3000)
 
-  if (module.hot) {
-    module.hot.accept()
-    module.hot.dispose(() => app.close())
+  const { hot } = import.meta as HotModule
+
+  if (hot) {
+    hot.accept()
+    hot.dispose(() => {
+      app.close().catch((error) => {
+        logger.error(error as Error)
+      })
+    })
   }
 }
 
-bootstrap()
+bootstrap().catch((error) => {
+  logger.error(error as Error)
+  process.exitCode = 1
+})

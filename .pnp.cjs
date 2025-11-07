@@ -15,6 +15,18 @@ const RAW_RUNTIME_STATE =
       "reference": "workspace:."\
     },\
     {\
+      "name": "@common-example/core-errors",\
+      "reference": "workspace:examples/core-errors"\
+    },\
+    {\
+      "name": "@common-example/guard-clause",\
+      "reference": "workspace:examples/guard-clause"\
+    },\
+    {\
+      "name": "@common-example/logger",\
+      "reference": "workspace:examples/logger"\
+    },\
+    {\
       "name": "@common-example/service-entrypoint",\
       "reference": "workspace:examples/service-entrypoint"\
     },\
@@ -37,6 +49,9 @@ const RAW_RUNTIME_STATE =
     ["@atls/core-errors", ["workspace:packages/core-errors"]],\
     ["@atls/guard-clause", ["workspace:packages/guard-clause"]],\
     ["@atls/logger", ["workspace:packages/logger"]],\
+    ["@common-example/core-errors", ["workspace:examples/core-errors"]],\
+    ["@common-example/guard-clause", ["workspace:examples/guard-clause"]],\
+    ["@common-example/logger", ["workspace:examples/logger"]],\
     ["@common-example/service-entrypoint", ["workspace:examples/service-entrypoint"]],\
     ["common", ["workspace:."]]\
   ],\
@@ -1204,6 +1219,36 @@ const RAW_RUNTIME_STATE =
           ["@babel/helper-validator-identifier", "npm:7.28.5"]\
         ],\
         "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@common-example/core-errors", [\
+      ["workspace:examples/core-errors", {\
+        "packageLocation": "./examples/core-errors/",\
+        "packageDependencies": [\
+          ["@common-example/core-errors", "workspace:examples/core-errors"],\
+          ["@atls/core-errors", "workspace:packages/core-errors"]\
+        ],\
+        "linkType": "SOFT"\
+      }]\
+    ]],\
+    ["@common-example/guard-clause", [\
+      ["workspace:examples/guard-clause", {\
+        "packageLocation": "./examples/guard-clause/",\
+        "packageDependencies": [\
+          ["@common-example/guard-clause", "workspace:examples/guard-clause"],\
+          ["@atls/guard-clause", "workspace:packages/guard-clause"]\
+        ],\
+        "linkType": "SOFT"\
+      }]\
+    ]],\
+    ["@common-example/logger", [\
+      ["workspace:examples/logger", {\
+        "packageLocation": "./examples/logger/",\
+        "packageDependencies": [\
+          ["@common-example/logger", "workspace:examples/logger"],\
+          ["@atls/logger", "workspace:packages/logger"]\
+        ],\
+        "linkType": "SOFT"\
       }]\
     ]],\
     ["@common-example/service-entrypoint", [\

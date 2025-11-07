@@ -27,7 +27,7 @@ export class SonicBoomLogRecordExporter extends ConsoleLogRecordExporter {
     done?: (result: ExportResult) => void
   ): void {
     for (const logRecord of logRecords) {
-      // @ts-expect-error -- accessing protected exporter internals to format log record payload
+      // @ts-expect-error - OpenTelemetry keeps _exportInfo protected in typings
       const record = JSON.stringify(this._exportInfo(logRecord)) // eslint-disable-line
 
       this.#stream.write(`${record}\n`)

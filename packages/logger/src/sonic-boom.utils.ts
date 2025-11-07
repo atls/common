@@ -7,7 +7,21 @@ import SonicBoomPkg     from 'sonic-boom'
 // @ts-ignore
 import onExit           from 'on-exit-leak-free'
 
-const SonicBoom = SonicBoomPkg || SonicBoomPkg
+type SonicBoomStream = {
+  destroyed: boolean
+  write: (record: string) => void
+  end: () => void
+  flush: () => void
+  flushSync: () => void
+  destroy: () => void
+  on: (event: string, listener: (...args: Array<any>) => void) => void
+  removeListener: (event: string, listener: (...args: Array<any>) => void) => void
+  emit: (event: string, ...args: Array<any>) => void
+}
+
+type SonicBoomConstructor = new (options: { fd: number }) => SonicBoomStream
+
+const SonicBoom = (SonicBoomPkg || SonicBoomPkg) as unknown as SonicBoomConstructor
 
 function noop() {}
 

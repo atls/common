@@ -1,0 +1,9 @@
+{
+  "name": "@common-example/core-errors",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@atls/core-errors": "workspace:*"
+  }
+}
