@@ -41,7 +41,6 @@ function autoEnd(stream: any, eventName: string) {
 }
 
 export const build = () => {
-  // @ts-expect-error -- sonic-boom typings miss the construct signature in nodenext mode
   const stream = new SonicBoom({ fd: process.stdout.fd || 1 })
 
   stream.on('error', filterBrokenPipe)

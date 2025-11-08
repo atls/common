@@ -27,13 +27,28 @@ const factory = (name: string, options?: AbstractGuardExtensionFactoryOptions['o
   NotBigInt: NotBigIntDecoratorFactory(name, options),
 })
 
-export const Against = (
-  name: string
-): ReturnType<typeof factory> & {
-  Optional: ReturnType<typeof factory>
-  Each: ReturnType<typeof factory>
-} => ({
-  ...factory(name),
-  Optional: factory(name, { optional: true }),
-  Each: factory(name, { each: true }),
-})
+type GuardDecoratorBuilder = ReturnType<typeof factory> & {
+  Optional: GuardDecoratorBuilder
+  Each: GuardDecoratorBuilder
+}
+
+const createBuilder = (
+  name: string,
+  options?: AbstractGuardExtensionFactoryOptions['options']
+): GuardDecoratorBuilder =>
+  Object.defineProperties(factory(name, options), {
+    Optional: {
+      enumerable: true,
+      get(): GuardDecoratorBuilder {
+        return createBuilder(name, { ...options, optional: true })
+      },
+    },
+    Each: {
+      enumerable: true,
+      get(): GuardDecoratorBuilder {
+        return createBuilder(name, { ...options, each: true })
+      },
+    },
+  }) as GuardDecoratorBuilder
+
+export const Against = (name: string): GuardDecoratorBuilder => createBuilder(name)
