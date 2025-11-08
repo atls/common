@@ -1,3 +1,15 @@
+
+
+## [0.0.5](https://github.com/atls/common/compare/@atls/core-errors@0.0.4...@atls/core-errors@0.0.5) (2025-11-08)
+
+
+### Features
+
+
+* **examples:** adding examples ([a31f551](https://github.com/atls/common/commit/a31f551d74082cb54e25c213e39316248b0df1c9))
+
+
+
 ## <small>0.0.4 (2025-01-10)</small>
 
 - chore: missed lock ([b9aa8b0](https://github.com/atls/common/commit/b9aa8b0))

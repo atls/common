@@ -1,3 +1,24 @@
+
+
+## [0.0.3](https://github.com/atls/common/compare/@atls/logger@0.0.3...@atls/logger@0.0.3) (2025-11-08)
+
+
+### Bug Fixes
+
+
+* checks ([139a8e0](https://github.com/atls/common/commit/139a8e0de19c0a2d24bf92536b125ace43cf32fa))
+
+### Features
+
+
+* **common:** upgrade ([34e108c](https://github.com/atls/common/commit/34e108c0895034a26728da5234a7186bad152a4d))
+* example app ([edccc54](https://github.com/atls/common/commit/edccc5481fcd77a125873bb6b86653f691680564))
+* **examples:** adding examples ([a31f551](https://github.com/atls/common/commit/a31f551d74082cb54e25c213e39316248b0df1c9))
+* opentelemetry migration ([ad458ce](https://github.com/atls/common/commit/ad458cea8f2c84e668478d272607d40b2572a197))
+* opentelemetry migration ([35e74d7](https://github.com/atls/common/commit/35e74d7185154490a33aa655d7fcd17757e130b3))
+
+
+
 ## <small>0.0.3 (2025-01-10)</small>
 
 - Initial commit ([e16e1b2](https://github.com/atls/common/commit/e16e1b2))

@@ -1,3 +1,15 @@
+
+
+## [0.0.2](https://github.com/atls/common/compare/@atls/guard-clause@0.0.1...@atls/guard-clause@0.0.2) (2025-11-08)
+
+
+### Features
+
+
+* **examples:** adding examples ([a31f551](https://github.com/atls/common/commit/a31f551d74082cb54e25c213e39316248b0df1c9))
+
+
+
 ## <small>0.0.1 (2025-01-10)</small>
 
 - Initial commit ([e16e1b2](https://github.com/atls/common/commit/e16e1b2))
