@@ -3,20 +3,26 @@
   "private": true,
   "type": "module",
   "workspaces": [
-    "packages/*"
+    "packages/**/*",
+    "examples/**/*"
   ],
-  "devDependencies": {
-    "@atls/code-runtime": "2.1.2",
-    "@types/node": "22.5.5",
-    "typescript": "5.4.2"
+  "scripts": {
+    "prepare": "husky"
   },
-  "packageManager": "yarn@4.6.0",
+  "devDependencies": {
+    "@atls/code-runtime": "2.1.14",
+    "@atls/schematics": "0.0.26",
+    "@types/node": "22.15.3",
+    "eslint": "9.25.1",
+    "typescript": "5.5.4"
+  },
+  "packageManager": "yarn@4.10.3",
   "tools": {
     "schematic": {
       "collection": "@atls/schematics",
       "schematic": "project",
-      "type": "libraries",
-      "migration": "1645277537744"
+      "type": "project",
+      "migration": "1711578899319"
     }
   }
 }
