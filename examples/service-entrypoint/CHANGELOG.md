@@ -1,5 +1,12 @@
 
 
+## [0.0.1](https://github.com/atls/common/compare/@common-example/service-entrypoint@0.0.1...@common-example/service-entrypoint@0.0.1) (2025-11-11)
+
+
+
+
+
+
 ## 0.0.1 (2025-11-08)
 
 
