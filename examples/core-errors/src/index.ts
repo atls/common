@@ -1,6 +1,6 @@
 import { DomainError } from '@atls/core-errors'
 
-type PaymentGateway = 'stripe' | 'cloud-payments'
+type PaymentGateway = 'cloud-payments' | 'stripe'
 
 type PaymentIntent = {
   id: string

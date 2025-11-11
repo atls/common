@@ -1,52 +1,50 @@
+import assert             from 'node:assert'
+import { describe }       from 'node:test'
+import { beforeEach }     from 'node:test'
+import { it }             from 'node:test'
+
 import { SeverityNumber } from '@opentelemetry/api-logs'
-import { describe }       from '@jest/globals'
-import { beforeEach }     from '@jest/globals'
-import { it }             from '@jest/globals'
-import { expect }         from '@jest/globals'
-import { jest }           from '@jest/globals'
 
 describe('logger.configuration', () => {
   const { env } = process
 
   beforeEach(async () => {
-    jest.resetModules()
-
     process.env = { ...env }
   })
 
   it('check accept default', async () => {
-    const { LoggerConfiguration } = await import('./logger.configuration.js')
+    const { LoggerConfiguration } = await import(`./logger.configuration.ts?t=${Date.now()}`)
 
-    expect(LoggerConfiguration.accept(SeverityNumber.INFO)).toBe(true)
+    assert.strictEqual(LoggerConfiguration.accept(SeverityNumber.INFO), true)
   })
 
   it('check accept less level', async () => {
-    const { LoggerConfiguration } = await import('./logger.configuration.js')
+    const { LoggerConfiguration } = await import(`./logger.configuration.ts?t=${Date.now()}`)
 
-    expect(LoggerConfiguration.accept(SeverityNumber.DEBUG)).toBe(false)
+    assert.strictEqual(LoggerConfiguration.accept(SeverityNumber.DEBUG), false)
   })
 
   it('check accept env configuration', async () => {
     process.env.LOG_LEVEL = 'DEBUG'
 
-    const { LoggerConfiguration } = await import('./logger.configuration.js')
+    const { LoggerConfiguration } = await import(`./logger.configuration.ts?t=${Date.now()}`)
 
-    expect(LoggerConfiguration.accept(SeverityNumber.DEBUG)).toBe(true)
+    assert.strictEqual(LoggerConfiguration.accept(SeverityNumber.DEBUG), true)
   })
 
   it('check accept less level env configuration', async () => {
     process.env.LOG_LEVEL = 'DEBUG1'
 
-    const { LoggerConfiguration } = await import('./logger.configuration.js')
+    const { LoggerConfiguration } = await import(`./logger.configuration.ts?t=${Date.now()}`)
 
-    expect(LoggerConfiguration.accept(SeverityNumber.DEBUG)).toBe(false)
+    assert.strictEqual(LoggerConfiguration.accept(SeverityNumber.DEBUG), false)
   })
 
   it('check accept debug', async () => {
     process.env.DEBUG = 'test'
 
-    const { LoggerConfiguration } = await import('./logger.configuration.js')
+    const { LoggerConfiguration } = await import(`./logger.configuration.ts?t=${Date.now()}`)
 
-    expect(LoggerConfiguration.accept(SeverityNumber.DEBUG, 'test')).toBe(true)
+    assert.strictEqual(LoggerConfiguration.accept(SeverityNumber.DEBUG, 'test'), true)
   })
 })
