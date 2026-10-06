@@ -43,6 +43,7 @@ node_modules
 # IDE system files & modules
 dist/
 *.iml
+.run/
 *.idea
 
 # next.js output
