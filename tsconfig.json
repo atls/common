@@ -20,6 +20,7 @@
     "strictPropertyInitialization": false,
     "module": "nodenext",
     "target": "es2022",
+    "rootDir": ".",
     "jsx": "react",
     "outDir": "./dist",
     "sourceMap": false,

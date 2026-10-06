@@ -12,7 +12,6 @@ import { NotOneOfDecoratorFactory }                  from './not-one-of.decorato
 import { NotStringLengthBetweenDecoratorFactory }    from './not-string-length-between.decorator.factory.js'
 import { NotUUIDDecoratorFactory }                   from './not-uuid.decorator.factory.js'
 
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 const factory = (name: string, options?: AbstractGuardExtensionFactoryOptions['options']) => ({
   Empty: EmptyDecoratorFactory(name, options),
   NotUUID: NotUUIDDecoratorFactory(name, options),

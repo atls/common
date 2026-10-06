@@ -1,9 +1,9 @@
 import { SeverityNumber } from '@opentelemetry/api-logs'
 
 export class LoggerConfiguration {
-  private static severityNumber: SeverityNumber
+  private static severityNumber: SeverityNumber | undefined
 
-  private static debug: Array<string>
+  private static debug: Array<string> | undefined
 
   static accept(severityNumber: SeverityNumber, debug?: string): boolean {
     if (debug && LoggerConfiguration.getDebug().includes(debug)) {
@@ -14,15 +14,11 @@ export class LoggerConfiguration {
   }
 
   private static getSeverityNumber(): SeverityNumber {
-    if (!LoggerConfiguration.severityNumber) {
-      if (process.env.LOG_LEVEL) {
-        LoggerConfiguration.severityNumber =
-          SeverityNumber[process.env.LOG_LEVEL as keyof typeof SeverityNumber] !== undefined
-            ? SeverityNumber[process.env.LOG_LEVEL as keyof typeof SeverityNumber]
-            : SeverityNumber.INFO
-      } else {
-        LoggerConfiguration.severityNumber = SeverityNumber.INFO
-      }
+    if (LoggerConfiguration.severityNumber === undefined) {
+      const level = process.env.LOG_LEVEL
+      const value: unknown = level && SeverityNumber[level as keyof typeof SeverityNumber]
+
+      LoggerConfiguration.severityNumber = typeof value === 'number' ? value : SeverityNumber.INFO
     }
 
     return LoggerConfiguration.severityNumber

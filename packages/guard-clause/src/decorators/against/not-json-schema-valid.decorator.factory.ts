@@ -8,7 +8,7 @@ export const NotJsonSchemaValidDecoratorFactory = (
     parameter: string,
     options?: AbstractGuardExtensionFactoryOptions['options']
   ) =>
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types, @typescript-eslint/no-explicit-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   (schema: any, defs?: Array<any>): DecoratorFactoryFn =>
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     function NotJsonSchemaValid(target: any, propertyKey: string, parameterIndex: number): void {
