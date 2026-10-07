@@ -19,18 +19,9 @@
   },
   "devDependencies": {
     "@atls/raijin": "1.1.1",
-    "@atls/schematics": "0.0.26",
     "@types/node": "22.20.0",
     "eslint": "9.25.1",
     "typescript": "5.5.4"
   },
-  "packageManager": "yarn@4.18.0",
-  "tools": {
-    "schematic": {
-      "collection": "@atls/schematics",
-      "schematic": "project",
-      "type": "project",
-      "migration": "1711578899319"
-    }
-  }
+  "packageManager": "yarn@4.18.0"
 }
