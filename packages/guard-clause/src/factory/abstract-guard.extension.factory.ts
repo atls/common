@@ -1,6 +1,4 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 
 import { GuardError } from '../errors/index.js'
 
@@ -50,9 +48,10 @@ export abstract class AbstractGuardExtensionFactory {
           if (paramIndexes.has(index)) {
             const options = paramIndexes.get(index)
 
-            if (
-              !(options!.options?.optional && (paramValue === undefined || paramValue === null))
-            ) {
+            if (!(
+              options!.options?.optional &&
+              (paramValue === undefined || paramValue === null)
+            )) {
               const values: Array<any> = options!.options?.each ? paramValue : [paramValue]
 
               if (!Array.isArray(values)) {

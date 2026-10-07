@@ -1,9 +1,19 @@
-import assert             from 'node:assert'
-import { describe }       from 'node:test'
-import { beforeEach }     from 'node:test'
-import { it }             from 'node:test'
+import type { LoggerConfiguration } from './logger.configuration.js'
 
-import { SeverityNumber } from '@opentelemetry/api-logs'
+import assert                       from 'node:assert'
+import { describe }                 from 'node:test'
+import { beforeEach }               from 'node:test'
+import { it }                       from 'node:test'
+
+import { SeverityNumber }           from '@opentelemetry/api-logs'
+
+type LoggerConfigurationModule = { LoggerConfiguration: typeof LoggerConfiguration }
+
+const loadLoggerConfiguration = async (): Promise<LoggerConfigurationModule> => {
+  const loaded: unknown = await import(`./logger.configuration.ts?t=${Date.now()}`)
+
+  return loaded as LoggerConfigurationModule
+}
 
 describe('logger.configuration', () => {
   const { env } = process
@@ -13,13 +23,13 @@ describe('logger.configuration', () => {
   })
 
   it('check accept default', async () => {
-    const { LoggerConfiguration } = await import(`./logger.configuration.ts?t=${Date.now()}`)
+    const { LoggerConfiguration } = await loadLoggerConfiguration()
 
     assert.strictEqual(LoggerConfiguration.accept(SeverityNumber.INFO), true)
   })
 
   it('check accept less level', async () => {
-    const { LoggerConfiguration } = await import(`./logger.configuration.ts?t=${Date.now()}`)
+    const { LoggerConfiguration } = await loadLoggerConfiguration()
 
     assert.strictEqual(LoggerConfiguration.accept(SeverityNumber.DEBUG), false)
   })
@@ -27,7 +37,7 @@ describe('logger.configuration', () => {
   it('check accept env configuration', async () => {
     process.env.LOG_LEVEL = 'DEBUG'
 
-    const { LoggerConfiguration } = await import(`./logger.configuration.ts?t=${Date.now()}`)
+    const { LoggerConfiguration } = await loadLoggerConfiguration()
 
     assert.strictEqual(LoggerConfiguration.accept(SeverityNumber.DEBUG), true)
   })
@@ -35,7 +45,7 @@ describe('logger.configuration', () => {
   it('check accept less level env configuration', async () => {
     process.env.LOG_LEVEL = 'DEBUG1'
 
-    const { LoggerConfiguration } = await import(`./logger.configuration.ts?t=${Date.now()}`)
+    const { LoggerConfiguration } = await loadLoggerConfiguration()
 
     assert.strictEqual(LoggerConfiguration.accept(SeverityNumber.DEBUG), false)
   })
@@ -43,7 +53,7 @@ describe('logger.configuration', () => {
   it('check accept debug', async () => {
     process.env.DEBUG = 'test'
 
-    const { LoggerConfiguration } = await import(`./logger.configuration.ts?t=${Date.now()}`)
+    const { LoggerConfiguration } = await loadLoggerConfiguration()
 
     assert.strictEqual(LoggerConfiguration.accept(SeverityNumber.DEBUG, 'test'), true)
   })

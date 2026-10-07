@@ -20,13 +20,13 @@
     "strictPropertyInitialization": false,
     "module": "nodenext",
     "target": "es2022",
+    "rootDir": ".",
     "jsx": "react",
     "outDir": "./dist",
     "sourceMap": false,
     "strict": true,
     "noImplicitAny": true,
-    "noImplicitOverride": true,
-    "skipLibCheck": true
+    "noImplicitOverride": true
   },
   "include": ["project.types.d.ts", "packages/**/*", "examples/**/*.ts"]
 }
