@@ -1,8 +1,0 @@
-releases:
-  "@atls/guard-clause": patch
-  "@atls/logger": major
-
-declined:
-  - "@common-example/guard-clause"
-  - "@common-example/logger"
-  - "@common-example/service-entrypoint"
