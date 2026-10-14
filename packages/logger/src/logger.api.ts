@@ -1,6 +1,5 @@
 import type { LoggerProvider as ApiLoggerProvider } from '@opentelemetry/api-logs'
 
-import { NoopLoggerProvider }                       from '@opentelemetry/api-logs'
 import { LoggerProvider }                           from '@opentelemetry/sdk-logs'
 import { SimpleLogRecordProcessor }                 from '@opentelemetry/sdk-logs'
 import { logs }                                     from '@opentelemetry/api-logs'
@@ -13,21 +12,17 @@ export class LoggerApi {
 
   static getLoggerProvider(): ApiLoggerProvider {
     if (!LoggerApi.initialized) {
-      if (logs.getLoggerProvider() instanceof NoopLoggerProvider) {
-        const loggerProvider = new LoggerProvider()
+      const exporter =
+        process.env.NODE_ENV === 'test' || process.env.JEST_WORKER_ID
+          ? new ConsoleLogRecordExporter()
+          : new SonicBoomLogRecordExporter()
+      const loggerProvider = new LoggerProvider({
+        processors: [new SimpleLogRecordProcessor({ exporter })],
+      })
 
-        loggerProvider.addLogRecordProcessor(
-          new SimpleLogRecordProcessor(
-            process.env.NODE_ENV === 'test' || process.env.JEST_WORKER_ID
-              ? new ConsoleLogRecordExporter()
-              : new SonicBoomLogRecordExporter()
-          )
-        )
+      logs.setGlobalLoggerProvider(loggerProvider)
 
-        logs.setGlobalLoggerProvider(loggerProvider)
-
-        LoggerApi.initialized = true
-      }
+      LoggerApi.initialized = true
     }
 
     return logs.getLoggerProvider()
