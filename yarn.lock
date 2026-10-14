@@ -77,7 +77,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@atls/raijin@npm:2.1.0":
+"@atls/raijin@npm:latest":
   version: 2.1.0
   resolution: "@atls/raijin@npm:2.1.0"
   dependencies:
@@ -2914,7 +2914,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "common@workspace:."
   dependencies:
-    "@atls/raijin": "npm:2.1.0"
+    "@atls/raijin": "npm:latest"
     "@types/node": "npm:22.20.0"
   languageName: unknown
   linkType: soft
